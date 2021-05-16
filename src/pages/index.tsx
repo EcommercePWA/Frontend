@@ -43,7 +43,7 @@ export default function Home(): ReactElement {
         </pre>
         <p>Modify the user name:</p>
         <Input value={name} onChange={(event) => setName(event.target.value)} />
-        <br />
+        <p />
         <Button variant={'outlined'} color={'primary'} onClick={updateName}>
           Submit
         </Button>
