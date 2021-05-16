@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "Lets-Shop",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -42,7 +42,8 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
-      "eslint --quiet --fix"
+      "eslint --quiet --fix",
+      "prettier --write"
     ],
     "*.{json,md,html}": [
       "prettier --write"
