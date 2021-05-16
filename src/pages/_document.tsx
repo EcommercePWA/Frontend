@@ -1,8 +1,8 @@
-/* eslint-disable react/jsx-props-no-spreading */
-// eslint-disable-next-line no-use-before-define
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types*/
 import React from 'react';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+
 export default class MyDocument extends Document {
   render() {
     return (
