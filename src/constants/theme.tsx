@@ -1,4 +1,4 @@
-// styles/theme.ts
+// constants/theme.tsx
 
 import { createMuiTheme } from '@material-ui/core/styles';
 

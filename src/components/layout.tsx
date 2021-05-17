@@ -1,13 +1,22 @@
+// components/layout.tsx
+
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from './layout.module.css';
-import utilStyles from '../styles/utils.module.css';
+import utilStyles from '_style/utils.module.css';
 import Link from 'next/link';
+import { ReactElement } from 'react';
 
-const name = '[Your Name]';
+const name = 'Let\'s Shop';
 export const siteTitle = 'Next.js Sample Website';
 
-export default function Layout({ children, home }: { children: React.ReactNode; home?: boolean }) {
+export default function Layout({
+  children,
+  home
+}: {
+  children: React.ReactNode;
+  home?: boolean;
+}): ReactElement {
   return (
     <div className={styles.container}>
       <Head>

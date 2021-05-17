@@ -1,11 +1,12 @@
 // pages/_app.tsx
-/* eslint-disable react/jsx-props-no-spreading */
+import { Provider } from 'react-redux';
 import { FC, useEffect } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import theme from '../styles/theme';
+import theme from '_constant/theme';
+import { useStore } from '_redux/store';
 
 const App: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
@@ -16,16 +17,20 @@ const App: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
     }
   }, []);
 
+  const store = useStore(pageProps.initialReduxState);
+
   return (
     <>
       <Head>
-        <title>My App</title>
+        <title>Lets Shop</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <Component {...pageProps} />
+        <Provider store={store}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          <Component {...pageProps} />
+        </Provider>
       </ThemeProvider>
     </>
   );
