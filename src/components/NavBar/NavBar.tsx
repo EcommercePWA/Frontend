@@ -2,13 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from './navbar.module.css';
 import { NavMenuApp } from '../../types';
-import Image from 'next/image';
-import ShopSvg from '../../images/shop.svg';
-import ShoppingBag from '_images/shopping-bags.svg';
 import { useWindowSize } from '_hook/useWindowSize';
 import Search from '../Search/Search';
-import { IoCartOutline } from 'react-icons/io5';
-import { OverlayTrigger } from 'react-bootstrap';
+import NavBrand from './NavBrand';
+import ShoppingCart from './ShoppingCart';
 
 const navBarLeftMenu: NavMenuApp[] = [
   { href: '/Fashion', name: 'Fashion' },
@@ -54,10 +51,7 @@ const NavBar = () => {
         <div className={styles.navBar}>
           {width! < 960 ? (
             <>
-              <div className={styles.brand}>
-                <Image src={ShopSvg} height={40} width={40} layout="fixed" />
-                <span>ShopNow</span>
-              </div>
+              <NavBrand />
               <div className={styles.navList}>
                 <div className={styles.hamburger} onClick={() => handleClick()}>
                   {!click ? (
@@ -94,26 +88,9 @@ const NavBar = () => {
                 </ul>
               </div>
               <div className={styles.navBarLower}>
-                <div className={styles.brand}>
-                  <Image src={ShopSvg} height={40} width={40} layout="fixed" />
-                  <span>ShopNow</span>
-                </div>
+                <NavBrand />
                 <Search />
-                <div className={styles.shoppingCartHolder}>
-                  <OverlayTrigger
-                    key="bottom"
-                    placement="bottom"
-                    overlay={
-                      <div className={styles.overLayStyling}>
-                        <Image src={ShoppingBag} height={120} width={120} />
-                        <p>There is nothing in your cart yet!</p>
-                      </div>
-                    }>
-                    <div>
-                      <IoCartOutline style={{ cursor: 'pointer' }} />
-                    </div>
-                  </OverlayTrigger>
-                </div>
+                <ShoppingCart />
               </div>
             </>
           )}
