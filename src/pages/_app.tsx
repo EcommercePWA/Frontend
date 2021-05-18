@@ -7,6 +7,14 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import theme from '_constant/theme';
 import { useStore } from '_redux/store';
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }`;
 
 const App: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
@@ -27,8 +35,7 @@ const App: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
       </Head>
       <ThemeProvider theme={theme}>
         <Provider store={store}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
+          <GlobalStyle />
           <Component {...pageProps} />
         </Provider>
       </ThemeProvider>

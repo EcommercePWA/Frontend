@@ -26,9 +26,10 @@
       "_lib/*": ["shared/libs/*"],
       "_style/*": ["shared/styles/*"],
       "_util/*": ["shared/utils/*"],
-      "_typing/*": ["types/*"]
+      "_typing/*": ["types/*"],
+      "_images/*": ["images/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./typings/index.d.ts"],
   "exclude": ["node_modules"]
 }
