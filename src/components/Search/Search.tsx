@@ -58,7 +58,7 @@ const Search = () => {
   }, [isOpen]);
 
   return (
-    <IconContext.Provider value={{ color: '#fff' }}>
+    <IconContext.Provider value={{ color: '#fff', size: '1.1em' }}>
       <div className={styles.search}>
         <form className={styles.form}>
           <input
