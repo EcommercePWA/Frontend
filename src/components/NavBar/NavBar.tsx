@@ -45,12 +45,12 @@ const NavBar = () => {
     window.addEventListener('resize', setValuesBasedOnWidth);
   }, []);
 
-  return (
-    <div className={styles.header}>
-      <div className={styles.headerContainer}>
-        <div className={styles.navBar}>
-          {width! < 960 ? (
-            <>
+  if (width! < 960) {
+    return (
+      <>
+        <div className={styles.header}>
+          <div className={styles.headerContainer}>
+            <div className={styles.navBar}>
               <NavBrand />
               <div className={styles.navList}>
                 <div className={styles.hamburger} onClick={() => handleClick()}>
@@ -68,32 +68,42 @@ const NavBar = () => {
                   ))}
                 </ul>
               </div>
-            </>
-          ) : (
-            <>
-              <div className={styles.navBarUpper}>
-                <ul className={styles.navBarLeftMenu}>
-                  {navBarLeftMenu.map((item) => (
-                    <li key={item.name}>
-                      <a onClick={() => handleClick(item.href)}>{item.name}</a>
-                    </li>
-                  ))}
-                </ul>
-                <ul className={styles.navBarRightMenu}>
-                  {navBarRightMenu.map((item) => (
-                    <li key={item.name}>
-                      <a onClick={() => handleClick(item.href)}>{item.name}</a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className={styles.navBarLower}>
-                <NavBrand />
-                <Search />
-                <ShoppingCart />
-              </div>
-            </>
-          )}
+            </div>
+          </div>
+        </div>
+        <div className={styles.navBarLower}>
+          <Search />
+          <ShoppingCart />
+        </div>
+      </>
+    );
+  }
+
+  return (
+    <div className={styles.header}>
+      <div className={styles.headerContainer}>
+        <div className={styles.navBar}>
+          <div className={styles.navBarUpper}>
+            <ul className={styles.navBarLeftMenu}>
+              {navBarLeftMenu.map((item) => (
+                <li key={item.name}>
+                  <a onClick={() => handleClick(item.href)}>{item.name}</a>
+                </li>
+              ))}
+            </ul>
+            <ul className={styles.navBarRightMenu}>
+              {navBarRightMenu.map((item) => (
+                <li key={item.name}>
+                  <a onClick={() => handleClick(item.href)}>{item.name}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className={styles.navBarLower}>
+            <NavBrand />
+            <Search />
+            <ShoppingCart />
+          </div>
         </div>
       </div>
     </div>
