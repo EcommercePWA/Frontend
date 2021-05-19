@@ -22,3 +22,8 @@ export interface Product {
   desc: string;
   tags: string[];
 }
+
+export interface NavMenuApp {
+  href: string;
+  name: string;
+}
