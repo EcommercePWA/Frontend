@@ -1,9 +1,10 @@
 .search {
   display: flex;
   background-color: #f8f8f8;
-  width: 60%;
-  margin: 0 20px;
-  border-radius: 3px;
+  width: 100%;
+  margin: 0 10px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
   position: relative;
 }
 
@@ -45,7 +46,6 @@
 .input {
   border: none;
   background-color: transparent;
-  min-width: 300px;
   padding: 0 10px;
   font-family: 'Montserrat', sans-serif;
   width: 100%;
@@ -61,4 +61,12 @@
   padding: 0 20px;
   cursor: pointer;
   background-color: #ff2636;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+@media only screen and (min-width: 960px) {
+  .search {
+    width: 60%;
+  }
 }

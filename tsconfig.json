@@ -27,7 +27,8 @@
       "_style/*": ["shared/styles/*"],
       "_util/*": ["shared/utils/*"],
       "_typing/*": ["types/*"],
-      "_images/*": ["images/*"]
+      "_images/*": ["images/*"],
+      "_types/*": ["types/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./typings/index.d.ts"],

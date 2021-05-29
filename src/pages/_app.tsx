@@ -1,7 +1,6 @@
 // pages/_app.tsx
 import { Provider } from 'react-redux';
 import { FC, useEffect } from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -10,11 +9,11 @@ import { useStore } from '_redux/store';
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }`;
+ * {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+ }`;
 
 const App: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {

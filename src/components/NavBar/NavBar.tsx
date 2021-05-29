@@ -47,7 +47,7 @@ const NavBar = () => {
 
   if (width! < 960) {
     return (
-      <>
+      <div>
         <div className={styles.header}>
           <div className={styles.headerContainer}>
             <div className={styles.navBar}>
@@ -75,7 +75,7 @@ const NavBar = () => {
           <Search />
           <ShoppingCart />
         </div>
-      </>
+      </div>
     );
   }
 
