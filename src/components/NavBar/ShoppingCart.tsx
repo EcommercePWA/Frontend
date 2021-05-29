@@ -13,12 +13,14 @@ const ShoppingCart = () => {
         placement="bottom"
         overlay={
           <div className={styles.overLayStyling}>
-            <Image src={ShoppingBag} height={120} width={120} />
+            <div className={styles.overLayImageHolder}>
+              <Image src={ShoppingBag} height={100} width={100} className={styles.overLayImage} />
+            </div>
             <p>There is nothing in your cart yet!</p>
           </div>
         }>
         <div>
-          <IoCartOutline style={{ cursor: 'pointer' }} />
+          <IoCartOutline style={{ cursor: 'pointer', transform: 'translateY(5px)' }} />
         </div>
       </OverlayTrigger>
     </div>

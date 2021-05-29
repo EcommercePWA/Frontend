@@ -4,7 +4,7 @@ import Head from 'next/head';
 import styles from './layout.module.css';
 import { ReactElement } from 'react';
 
-export const siteTitle = "Let's Shop";
+export const siteTitle = 'LetShop';
 
 export default function Layout({ children }: { children: React.ReactNode }): ReactElement {
   return (

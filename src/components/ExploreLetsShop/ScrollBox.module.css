@@ -1,0 +1,70 @@
+.scrollBox {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.scrollBox__wrapper {
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+}
+
+.scrollBox__wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollBox__container {
+  height: 100%;
+  display: flex;
+  padding: 0 10px;
+}
+
+.scrollBox__container__icon {
+  margin: 10px 13px;
+}
+
+.scrollBox__container__icon:last-child {
+  padding-right: 15px;
+}
+
+.image_circle {
+  width: 2.7em;
+  height: 2.7em;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.scrollBox_container__top {
+  display: grid;
+  place-items: center;
+  min-width: 60px;
+}
+
+.scrollBox__container__icon p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.55em;
+  font-weight: 500;
+  color: #303030;
+  margin: 5px 0;
+  text-align: center;
+}
+
+@media screen and (min-width: 600px) {
+  .scrollBox_container__top {
+    min-width: 80px;
+  }
+
+  .scrollBox__container__icon {
+    margin: 10px 10px;
+  }
+
+  .scrollBox__container__icon p {
+    font-size: 0.65em;
+  }
+}

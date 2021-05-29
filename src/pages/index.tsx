@@ -6,6 +6,7 @@ import { ReactElement, useState } from 'react';
 import utilStyles from '_style/utils.module.css';
 import { setUser } from '_redux/actions/users';
 import { useAppSelector } from '_hook/redux';
+import ExploreLetShop from '../components/ExploreLetsShop/ExploreLetsShop';
 
 export default function Home(): ReactElement {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export default function Home(): ReactElement {
         <title>{siteTitle}</title>
       </Head>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <ExploreLetShop />
         <h2 className={utilStyles.headingLg}>Current redux state</h2>
         <pre
           style={{
