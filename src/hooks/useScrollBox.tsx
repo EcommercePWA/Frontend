@@ -72,7 +72,7 @@ function useScrollBox(scrollRef: React.RefObject<HTMLDivElement>) {
         }
       };
       const handleDragEnd = () => {
-        if (isDragging && clickStartX !== undefined) {
+        if (clickStartX !== undefined) {
           setClickStartX(undefined);
           setScrollStartX(undefined);
           setIsDragging(false);
