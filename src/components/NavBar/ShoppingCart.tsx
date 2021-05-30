@@ -11,6 +11,7 @@ const ShoppingCart = () => {
       <OverlayTrigger
         key="bottom"
         placement="bottom"
+        trigger={["click", "hover"]}
         overlay={
           <div className={styles.overLayStyling}>
             <div className={styles.overLayImageHolder}>

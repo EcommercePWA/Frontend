@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './CarouselBox.module.css';
-import { ScrollBoxProps, ScrollBoxItemProps } from '_types/index';
-import Image from 'next/image';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { useWindowSize } from '_hook/useWindowSize';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
-const segmentArray = (data: ScrollBoxItemProps[]) => {
-  let arr = [];
-  let temp = [];
+const segmentArray = <T,>(data: T[], itemsPerPage: number): T[][] => {
+  const arr: T[][] = [];
+  let temp: T[] = [];
   for (let i = 0; i < data.length; i++) {
     temp.push(data[i]);
-    if (temp.length === 6) {
+    if (temp.length === itemsPerPage) {
       arr.push(temp);
       temp = [];
     }
@@ -41,14 +39,32 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const CarouselBox = ({ data }: ScrollBoxProps) => {
+type CarouselBoxProps<T> = {
+  carouselItems: T[];
+  renderItem: (item: T, index?: number) => React.ReactNode;
+  itemsPerPage: number;
+  children?: React.ReactNode;
+  renderHeader?: () => React.ReactNode;
+  renderFooter?: () => React.ReactNode;
+};
+
+const CarouselBox = <T,>({
+  carouselItems,
+  itemsPerPage,
+  renderItem,
+  renderHeader,
+  renderFooter
+}: CarouselBoxProps<T>) => {
   const { width } = useWindowSize();
   const classes = useStyles();
 
-  let arr = segmentArray(data);
-
+  const [arr, setArr] = useState<T[][]>([]);
   const [dist, setDist] = useState(0);
   const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    setArr(segmentArray(carouselItems, itemsPerPage));
+  }, [carouselItems, itemsPerPage]);
 
   const shiftLeft = () => {
     setDist(-getPercentage(width!) * (idx - 1) * width!);
@@ -61,23 +77,20 @@ const CarouselBox = ({ data }: ScrollBoxProps) => {
 
   return (
     <div className={styles.carouselWrapper}>
-      <div className={styles.letsShop}>
-        <span>Explore LetShop</span>
-      </div>
+      {renderHeader && renderHeader()}
       <div className={styles.overFlowHidden}>
         {arr.map((arr, index) => (
           <div
             key={`cb-${index}`}
             style={{ transform: `translateX(${dist}px)` }}
             className={styles.carouselBox__container__icon}>
-            {arr.map((item) => (
-              <div className={styles.carouselBox_container__top} key={`cb-${item.name}`}>
-                <div className={styles.image_circle} style={{ background: item.color }}>
-                  <Image src={item.src} width="60%" height="60%" />
+            {arr.map((item, index) => {
+              return (
+                <div key={`cb-${index}`}>
+                  {renderItem(item, index)}
                 </div>
-                <p>{item.name}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         ))}
       </div>
@@ -93,6 +106,7 @@ const CarouselBox = ({ data }: ScrollBoxProps) => {
         className={`${styles.carouselButton} ${styles.buttonRight}`}>
         <NavigateNextIcon className={classes.rightArrow} />
       </button>
+      {renderFooter && renderFooter()}
     </div>
   );
 };

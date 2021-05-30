@@ -32,39 +32,8 @@
   padding-right: 15px;
 }
 
-.image_circle {
-  width: 2.7em;
-  height: 2.7em;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-}
-
-.scrollBox_container__top {
-  display: grid;
-  place-items: center;
-  min-width: 60px;
-}
-
-.scrollBox__container__icon p {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.55em;
-  font-weight: 500;
-  color: #303030;
-  margin: 5px 0;
-  text-align: center;
-}
-
 @media screen and (min-width: 600px) {
-  .scrollBox_container__top {
-    min-width: 80px;
-  }
-
   .scrollBox__container__icon {
     margin: 10px 10px;
-  }
-
-  .scrollBox__container__icon p {
-    font-size: 0.65em;
   }
 }

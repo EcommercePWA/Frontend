@@ -1,9 +1,13 @@
+.navBarContainer {
+}
+
 .header {
   position: sticky;
   z-index: 100;
   left: 0;
   top: 0;
   width: 100vw;
+  background-color: white;
 }
 
 .brand {
@@ -51,8 +55,11 @@
   justify-content: center;
   align-items: center;
   z-index: 1;
-  overflow-x: hidden;
   transition: 0.5s ease left;
+}
+
+.navList {
+  overflow-x: hidden;
 }
 
 .navList ul.active {

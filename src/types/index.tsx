@@ -27,14 +27,3 @@ export interface NavMenuApp {
   href: string;
   name: string;
 }
-
-export interface ScrollBoxItemProps {
-  name: string;
-  src: string;
-  color: string;
-  size: number;
-}
-
-export interface ScrollBoxProps {
-  data: ScrollBoxItemProps[];
-}

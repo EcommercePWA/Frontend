@@ -55,40 +55,6 @@
   transition: 0.3s ease-in-out;
 }
 
-.carouselBox_container__top {
-  display: grid;
-  place-items: center;
-}
-
-.image_circle {
-  padding: 10px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-}
-
-.carouselBox__container__icon p {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.65em;
-  font-weight: 500;
-  color: #70747a;
-  margin: 5px 0;
-  text-align: center;
-}
-
-.letsShop {
-  padding: 10px 20px 5px 20px;
-}
-
-.letsShop span {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  color: #20232a;
-  font-size: 1.2em;
-  letter-spacing: 0.5px;
-}
-
 @media screen and (min-width: 1200px) {
   .carouselWrapper {
     max-width: 70vw;

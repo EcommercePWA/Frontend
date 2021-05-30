@@ -6,7 +6,7 @@ import { ReactElement, useState } from 'react';
 import utilStyles from '_style/utils.module.css';
 import { setUser } from '_redux/actions/users';
 import { useAppSelector } from '_hook/redux';
-import ExploreLetShop from '../components/ExploreLetsShop/ExploreLetsShop';
+import ExploreLetShop from '../components/ExploreBox/ExploreBox';
 
 export default function Home(): ReactElement {
   const dispatch = useDispatch();

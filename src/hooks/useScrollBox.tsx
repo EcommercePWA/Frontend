@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import throttle from 'lodash/throttle';
 
 // credits from https://github.com/murilovarela/easy-scroll-box/blob/master/src/components/useScrollBox.js
@@ -25,8 +25,10 @@ function useScrollBox(scrollRef: React.RefObject<HTMLDivElement>) {
   const handleMomentum = useCallback(
     throttle((nextMomentum) => {
       setMomentum(nextMomentum);
-      scrollRef.current!.scrollLeft =
-        scrollRef.current!.scrollLeft + nextMomentum * timing * direction;
+      if (scrollRef.current) {
+        scrollRef.current.scrollLeft =
+          scrollRef.current.scrollLeft + nextMomentum * timing * direction;
+      }
     }, timing),
     [scrollWrapperCurrent, direction]
   );
@@ -46,7 +48,9 @@ function useScrollBox(scrollRef: React.RefObject<HTMLDivElement>) {
     if (scrollRef.current) {
       const handleDragStart = (e: MouseEvent) => {
         setClickStartX(e.screenX);
-        setScrollStartX(scrollRef.current!.scrollLeft);
+        if (scrollRef.current) {
+          setScrollStartX(scrollRef.current.scrollLeft);
+        }
         setDirection(0);
       };
       const handleDragMove = (e: MouseEvent) => {
@@ -55,7 +59,9 @@ function useScrollBox(scrollRef: React.RefObject<HTMLDivElement>) {
 
         if (clickStartX !== undefined && scrollStartX !== undefined) {
           const touchDelta = clickStartX - e.screenX;
-          scrollRef.current!.scrollLeft = scrollStartX + touchDelta;
+          if (scrollRef.current) {
+            scrollRef.current.scrollLeft = scrollStartX + touchDelta;
+          }
 
           if (Math.abs(touchDelta) > 1) {
             setIsDragging(true);
