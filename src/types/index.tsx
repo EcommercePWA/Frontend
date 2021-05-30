@@ -23,7 +23,14 @@ export interface Product {
   tags: string[];
 }
 
-export interface NavMenuApp {
-  href: string;
+export interface ExploreItemType {
   name: string;
+  src: string;
+  color: string;
+  size: number;
+}
+
+export interface ImageSlideType {
+  url: string;
+  description?: string;
 }

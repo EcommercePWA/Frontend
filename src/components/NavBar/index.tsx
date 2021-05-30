@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import styles from './navbar.module.css';
-import { NavMenuApp } from '../../types';
 import { useWindowSize } from '_hook/useWindowSize';
-import Search from '../Search/Search';
+import Search from '../Search';
 import NavBrand from './NavBrand';
 import ShoppingCart from './ShoppingCart';
+
+export interface NavMenuApp {
+  href: string;
+  name: string;
+}
 
 const navBarLeftMenu: NavMenuApp[] = [
   { href: '/Fashion', name: 'Fashion' },

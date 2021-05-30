@@ -11,12 +11,11 @@ type ScrollBoxProps<T> = {
 
 const ScrollBox = <T,>({ scrollItems, renderItem, isLooping = false }: ScrollBoxProps<T>) => {
   const scrollWrapperRef = useRef<HTMLDivElement>(null);
-  const [scrollPos, setScrollPos] = useState(0);
   const { momentum, isDragging } = useScrollBox(scrollWrapperRef);
 
   const handleScroll = React.useCallback(() => {
     const ref = scrollWrapperRef.current;
-    const leftPos = scrollPos;
+    const leftPos = scrollWrapperRef.current!.scrollLeft;
     const rightPos = ref!.scrollWidth - (leftPos + ref!.clientWidth);
     const contentWidth = ref!.scrollWidth / 2;
 
@@ -30,11 +29,7 @@ const ScrollBox = <T,>({ scrollItems, renderItem, isLooping = false }: ScrollBox
       ref!.scrollLeft = contentWidth - ref!.clientWidth;
       return;
     }
-  }, [scrollPos]);
-
-  useLayoutEffect(() => {
-    setScrollPos(scrollWrapperRef.current!.scrollLeft);
-  });
+  }, [scrollWrapperRef.current?.scrollLeft]);
 
   return (
     <div className={styles.scrollBox}>

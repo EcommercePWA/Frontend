@@ -5,5 +5,8 @@ module.exports = {
       loader: 'url-loader?limit=100000'
     });
     return config;
+  },
+  images: {
+    domains: ['images.unsplash.com']
   }
 };

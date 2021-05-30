@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './CarouselBox.module.css';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import { useWindowSize } from '_hook/useWindowSize';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { useWindowSize } from '_hook/useWindowSize';
+import useDebounce from '_hook/useDebounce';
 
 const segmentArray = <T,>(data: T[], itemsPerPage: number): T[][] => {
   const arr: T[][] = [];
@@ -15,17 +16,10 @@ const segmentArray = <T,>(data: T[], itemsPerPage: number): T[][] => {
       temp = [];
     }
   }
-  return arr;
-};
-
-const getPercentage = (val: number) => {
-  if (val < 1200) {
-    return 0.85;
-  } else if (val < 1400) {
-    return 0.7;
-  } else {
-    return 0.55;
+  if (temp.length > 0) {
+    arr.push(temp);
   }
+  return arr;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -43,71 +37,129 @@ type CarouselBoxProps<T> = {
   carouselItems: T[];
   renderItem: (item: T, index?: number) => React.ReactNode;
   itemsPerPage: number;
+  transitionSpeed?: number;
+  leftButtonClass?: string;
+  leftButtonIcon?: React.ReactNode;
+  rightButtonClass?: string;
+  rightButtonIcon?: React.ReactNode;
+  // onPageChange takes in index of first element from the left
+  onPageChange?: (currIdx: number) => void;
   children?: React.ReactNode;
-  renderHeader?: () => React.ReactNode;
-  renderFooter?: () => React.ReactNode;
 };
 
 const CarouselBox = <T,>({
   carouselItems,
   itemsPerPage,
   renderItem,
-  renderHeader,
-  renderFooter
+  transitionSpeed = 0.5,
+  leftButtonClass,
+  rightButtonClass,
+  leftButtonIcon,
+  rightButtonIcon,
+  onPageChange = (noop: number) => noop
 }: CarouselBoxProps<T>) => {
   const { width } = useWindowSize();
+  const debouncedWidth = useDebounce(width, 300);
+  const boxRef = useRef<HTMLDivElement>(null);
   const classes = useStyles();
 
   const [arr, setArr] = useState<T[][]>([]);
+  const [leftBound, setLeftBound] = useState(0);
+  const [rightBound, setRightBound] = useState(0);
   const [dist, setDist] = useState(0);
-  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    if (!boxRef.current) {
+      return;
+    }
+    const { clientWidth } = boxRef.current;
+    setLeftBound(0);
+    setRightBound(-(clientWidth / itemsPerPage) * (carouselItems.length - itemsPerPage));
+    setDist(snapToGrid);
+  }, [itemsPerPage, carouselItems, debouncedWidth]);
 
   useEffect(() => {
     setArr(segmentArray(carouselItems, itemsPerPage));
-  }, [carouselItems, itemsPerPage]);
+  }, [itemsPerPage, carouselItems]);
 
   const shiftLeft = () => {
-    setDist(-getPercentage(width!) * (idx - 1) * width!);
-    setIdx(idx - 1);
-  };
-  const shiftRight = () => {
-    setDist(-getPercentage(width!) * (idx + 1) * width!);
-    setIdx(idx + 1);
+    if (!boxRef.current) {
+      return;
+    }
+
+    const { clientWidth } = boxRef.current;
+    setDist((dist) => {
+      if (dist + clientWidth > leftBound) {
+        return 0;
+      }
+
+      return snapToGrid(dist + clientWidth);
+    });
   };
 
+  const shiftRight = () => {
+    if (!boxRef.current) {
+      return;
+    }
+    const { clientWidth } = boxRef.current;
+    setDist((dist) => {
+      if (dist - clientWidth < rightBound) {
+        return rightBound;
+      }
+      return snapToGrid(dist - clientWidth);
+    });
+  };
+
+  const snapToGrid = (value: number) => {
+    if (!boxRef.current) {
+      return value;
+    }
+    const { clientWidth } = boxRef.current;
+    const itemWidth = clientWidth / itemsPerPage;
+    const ratio = -value / itemWidth;
+    let idx = ratio % 1 > 0.5 ? Math.ceil(ratio) : Math.floor(ratio);
+    idx = idx >= carouselItems.length ? carouselItems.length - 1 : idx < 0 ? 0 : idx;
+    return idx * -itemWidth;
+  };
+
+  useEffect(() => {
+    if (boxRef.current) {
+      const { clientWidth } = boxRef.current;
+      onPageChange(-dist / (clientWidth / itemsPerPage));
+    }
+  }, [dist]);
+
   return (
-    <div className={styles.carouselWrapper}>
-      {renderHeader && renderHeader()}
-      <div className={styles.overFlowHidden}>
+    <>
+      <div className={styles.overFlowHidden} ref={boxRef}>
         {arr.map((arr, index) => (
           <div
             key={`cb-${index}`}
-            style={{ transform: `translateX(${dist}px)` }}
+            style={{
+              transform: `translateX(${dist}px)`,
+              gridTemplateColumns: `repeat(${itemsPerPage},1fr)`,
+              transitionDuration: `${transitionSpeed}s`
+            }}
             className={styles.carouselBox__container__icon}>
             {arr.map((item, index) => {
-              return (
-                <div key={`cb-${index}`}>
-                  {renderItem(item, index)}
-                </div>
-              );
+              return <div key={`cb-${index}`}>{renderItem(item, index)}</div>;
             })}
           </div>
         ))}
       </div>
       <button
-        style={{ display: idx === 0 ? 'none' : 'grid' }}
+        style={{ display: dist === leftBound ? 'none' : 'grid' }}
         onClick={shiftLeft}
-        className={`${styles.carouselButton} ${styles.buttonLeft}`}>
-        <NavigateBeforeIcon className={classes.leftArrow} />
+        className={`${leftButtonClass} ${styles.buttonLeft}`}>
+        {rightButtonIcon || <NavigateBeforeIcon className={classes.leftArrow} />}
       </button>
       <button
-        style={{ display: idx === arr.length - 1 ? 'none' : 'grid' }}
+        style={{ display: dist === rightBound ? 'none' : 'grid' }}
         onClick={shiftRight}
-        className={`${styles.carouselButton} ${styles.buttonRight}`}>
-        <NavigateNextIcon className={classes.rightArrow} />
+        className={`${rightButtonClass} ${styles.buttonRight}`}>
+        {leftButtonIcon || <NavigateNextIcon className={classes.rightArrow} />}
       </button>
-      {renderFooter && renderFooter()}
-    </div>
+    </>
   );
 };
 
