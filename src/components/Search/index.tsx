@@ -26,6 +26,7 @@ const Search = () => {
   ];
 
   const [arr, setArr] = useState<string[]>(fixArray);
+  const [searchText, setSearchText] = useState('');
 
   const debounce = (func: (e: React.ChangeEvent<HTMLInputElement>) => void) => {
     let timer: NodeJS.Timeout;
@@ -38,7 +39,7 @@ const Search = () => {
   };
 
   const filterArray = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let newList = fixArray.filter(
+    const newList = fixArray.filter(
       (item) => item.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1
     );
     setArr(newList);
@@ -47,7 +48,7 @@ const Search = () => {
   useEffect(() => {
     if (!isOpen) return;
     const handleClick = (e: Event) => {
-      let temp = e.target as Node;
+      const temp = e.target as Node;
       // MAY NOT BE THE MOST ELEGANT SOLUTION, BUT IT STILL WORKS
       if (dropDown.current && temp.nodeName !== 'INPUT' && !dropDown.current?.contains(temp)) {
         setIsOpen(false);
@@ -64,6 +65,8 @@ const Search = () => {
           <input
             placeholder="Find your item"
             className={styles.input}
+            value={searchText}
+            onChange={(event) => setSearchText(event.target.value)}
             onInput={debounce(filterArray)}
             onFocus={() => setIsOpen(true)}
             spellCheck="false"
@@ -75,7 +78,13 @@ const Search = () => {
         {isOpen && (
           <div className={styles.dropDownList} ref={dropDown}>
             {arr.map((word, i) => (
-              <p className={styles.dropDownListElement} key={word + i}>
+              <p
+                className={styles.dropDownListElement}
+                key={word + i}
+                onClick={() => {
+                  setSearchText(word);
+                  setIsOpen(false);
+                }}>
                 {word}
               </p>
             ))}

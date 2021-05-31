@@ -23,18 +23,14 @@ export interface Product {
   tags: string[];
 }
 
-export interface NavMenuApp {
-  href: string;
-  name: string;
-}
-
-export interface ScrollBoxItemProps {
+export interface ExploreItemType {
   name: string;
   src: string;
   color: string;
   size: number;
 }
 
-export interface ScrollBoxProps {
-  data: ScrollBoxItemProps[];
+export interface ImageSlideType {
+  url: string;
+  description?: string;
 }

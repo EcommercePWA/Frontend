@@ -1,0 +1,103 @@
+/* ScrollBox */
+
+.scrollBox_container__top {
+  display: grid;
+  place-items: center;
+  min-width: 60px;
+}
+
+.scrollBox_container__top p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.60em;
+  font-weight: 500;
+  color: #303030;
+  margin: 5px 0;
+  text-align: center;
+}
+
+.scrollBox_image_circle {
+  width: 2.7em;
+  height: 2.7em;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 600px) {
+  .scrollBox_container__top {
+    min-width: 80px;
+  }
+
+  .scrollBox__container__icon {
+    margin: 10px 10px;
+  }
+
+  .scrollBox__container__icon p {
+    font-size: 0.75em;
+  }
+}
+
+/* Carousel Box*/
+.carouselWrapper {
+  background-color: white;
+  max-width: 90%;
+  min-width: 90%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  position: relative;
+  margin: 15px 0;
+  padding: 5px 0;
+}
+
+.carouselBox_container__top {
+  display: grid;
+  place-items: center;
+}
+
+.carouselBox_container__top p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75em;
+  font-weight: 500;
+  color: #70747a;
+  margin: 5px 0;
+  text-align: center;
+}
+
+.carouselBox_image_circle {
+  padding: 10px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.letsShop {
+  padding: 10px 20px 5px 20px;
+}
+
+.letsShop span {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #20232a;
+  font-size: 1.2em;
+  letter-spacing: 0.5px;
+}
+
+.carouselButton {
+  background-color: white;
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+.buttonLeft {
+  left: -20px;
+}
+
+.buttonRight {
+  right: -20px;
+}

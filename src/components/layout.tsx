@@ -1,8 +1,9 @@
 // components/layout.tsx
-import NavBar from './NavBar/NavBar';
+import NavBar from './NavBar';
 import Head from 'next/head';
 import styles from './layout.module.css';
 import { ReactElement } from 'react';
+import Footer from './Footer';
 
 export const siteTitle = 'LetShop';
 
@@ -22,7 +23,8 @@ export default function Layout({ children }: { children: React.ReactNode }): Rea
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <NavBar />
-      {children}
+      <div className={styles.body}>{children}</div>
+      <Footer />
     </div>
   );
 }

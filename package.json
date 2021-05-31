@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --fix .",
-    "check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc"
+    "check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,md,json}\" --config ./.prettierrc"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.4",
