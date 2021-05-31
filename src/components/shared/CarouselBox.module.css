@@ -40,7 +40,6 @@
   min-width: 100%;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  padding: 0 10px;
   /*align-items: center;*/
   justify-content: center;
   transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);

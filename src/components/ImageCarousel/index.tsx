@@ -26,6 +26,7 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({ data }) => {
       <CarouselBox
         carouselItems={data}
         itemsPerPage={1}
+        spacing={10}
         renderItem={({ url, description }: ImageSlideType) => (
           <div className={styles.imageCarousel_image_container}>
             <Image

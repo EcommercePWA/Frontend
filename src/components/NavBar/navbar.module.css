@@ -64,6 +64,9 @@
 
 .navList ul.active {
   left: 0%;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
 }
 
 .navList ul a {

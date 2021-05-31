@@ -4,7 +4,6 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { useWindowSize } from '_hook/useWindowSize';
-import useDebounce from '_hook/useDebounce';
 
 const segmentArray = <T,>(data: T[], itemsPerPage: number): T[][] => {
   const arr: T[][] = [];
@@ -37,6 +36,7 @@ type CarouselBoxProps<T> = {
   carouselItems: T[];
   renderItem: (item: T, index?: number) => React.ReactNode;
   itemsPerPage: number;
+  spacing?: number;
   transitionSpeed?: number;
   leftButtonClass?: string;
   leftButtonIcon?: React.ReactNode;
@@ -51,6 +51,7 @@ const CarouselBox = <T,>({
   carouselItems,
   itemsPerPage,
   renderItem,
+  spacing = 0,
   transitionSpeed = 0.5,
   leftButtonClass,
   rightButtonClass,
@@ -59,7 +60,7 @@ const CarouselBox = <T,>({
   onPageChange = (noop: number) => noop
 }: CarouselBoxProps<T>) => {
   const { width } = useWindowSize();
-  const debouncedWidth = useDebounce(width, 300);
+  const prevWidth = useRef<number>();
   const boxRef = useRef<HTMLDivElement>(null);
   const classes = useStyles();
 
@@ -75,8 +76,16 @@ const CarouselBox = <T,>({
     const { clientWidth } = boxRef.current;
     setLeftBound(0);
     setRightBound(-(clientWidth / itemsPerPage) * (carouselItems.length - itemsPerPage));
-    setDist(snapToGrid);
-  }, [itemsPerPage, carouselItems, debouncedWidth]);
+    prevWidth.current = width;
+    setDist(snapToGrid)
+  }, [itemsPerPage, carouselItems, width]);
+
+  // useEffect(() => {
+  //   if (prevWidth.current && width !== prevWidth.current && prevWidth.current !== 0) {
+  //     setDist((dist) => snapToGrid((width / prevWidth.current!) * dist));
+  //   }
+  //   prevWidth.current = width;
+  // }, [width]);
 
   useEffect(() => {
     setArr(segmentArray(carouselItems, itemsPerPage));
@@ -90,7 +99,7 @@ const CarouselBox = <T,>({
     const { clientWidth } = boxRef.current;
     setDist((dist) => {
       if (dist + clientWidth > leftBound) {
-        return 0;
+        return leftBound;
       }
 
       return snapToGrid(dist + clientWidth);
@@ -138,7 +147,8 @@ const CarouselBox = <T,>({
             style={{
               transform: `translateX(${dist}px)`,
               gridTemplateColumns: `repeat(${itemsPerPage},1fr)`,
-              transitionDuration: `${transitionSpeed}s`
+              transitionDuration: `${transitionSpeed}s`,
+              padding: `0 ${spacing}px`,
             }}
             className={styles.carouselBox__container__icon}>
             {arr.map((item, index) => {
@@ -148,13 +158,13 @@ const CarouselBox = <T,>({
         ))}
       </div>
       <button
-        style={{ display: dist === leftBound ? 'none' : 'grid' }}
+        style={{ display: dist >= leftBound ? 'none' : 'grid' }}
         onClick={shiftLeft}
         className={`${leftButtonClass} ${styles.buttonLeft}`}>
         {rightButtonIcon || <NavigateBeforeIcon className={classes.leftArrow} />}
       </button>
       <button
-        style={{ display: dist === rightBound ? 'none' : 'grid' }}
+        style={{ display: dist <= rightBound ? 'none' : 'grid' }}
         onClick={shiftRight}
         className={`${rightButtonClass} ${styles.buttonRight}`}>
         {leftButtonIcon || <NavigateNextIcon className={classes.rightArrow} />}
