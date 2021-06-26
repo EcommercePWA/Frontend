@@ -13,7 +13,6 @@ const duplicateArray = (n: number, arr: RecommendedItems[]) => {
   for (let i = 1; i < n; i++) {
     arr = [...arr, ...arr];
   }
-  console.log(arr);
   return arr;
 };
 
