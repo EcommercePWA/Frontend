@@ -16,6 +16,7 @@
     "@types/react-bootstrap": "^0.32.25",
     "@types/styled-components": "^5.1.9",
     "date-fns": "^2.11.1",
+    "dexie": "^3.0.3",
     "file-loader": "^6.2.0",
     "gray-matter": "^4.0.2",
     "next": "^10.0.0",

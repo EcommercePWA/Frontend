@@ -1,7 +1,7 @@
 import styles from './Search.module.css';
 import { IoSearchOutline } from 'react-icons/io5';
 import { IconContext } from 'react-icons/lib';
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const Search = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,6 +27,10 @@ const Search = () => {
 
   const [arr, setArr] = useState<string[]>(fixArray);
   const [searchText, setSearchText] = useState('');
+  
+  useEffect(() => {
+    
+  }, []);
 
   const debounce = (func: (e: React.ChangeEvent<HTMLInputElement>) => void) => {
     let timer: NodeJS.Timeout;

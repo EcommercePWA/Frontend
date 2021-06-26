@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+
 import CarouselBox from '../shared/CarouselBox';
-import styles from './ImageCarousel.module.css';
 import { ImageSlideType } from '_types/index';
+
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+
+import styles from './ImageCarousel.module.css';
 
 type ImageCarouselProps = {
   data: ImageSlideType[];

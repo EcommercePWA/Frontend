@@ -1,0 +1,90 @@
+.imageContainer {
+  flex: 1;
+  display: grid;
+  place-items: center;
+}
+
+.cardContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 5px;
+  justify-content: center;
+}
+
+.cardContainer:hover {
+  transform: scale(1.05);
+}
+
+.cardDescription,
+.bottomContainer {
+  padding: 0 10px;
+}
+
+.cardDescription span,
+.bottomContainer span {
+  display: inline-block;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  word-spacing: 0.5px;
+  line-height: 15px;
+  margin: 5px 0;
+}
+
+.cardDescription {
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.cardDescription span {
+  color: #363636;
+}
+
+.cardDescription span:first-child {
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.cardDescription span:last-child {
+  font-size: 0.6em;
+}
+
+.bottomContainer {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.bottomContainer span {
+  font-size: 0.8em;
+}
+
+.bottomContainer span:first-child {
+  color: crimson;
+}
+
+.bottomContainer span:last-child {
+  color: #aaa;
+  margin-left: 5px;
+}
+
+.heartContainer {
+  display: flex;
+  align-items: center;
+  color: #aaa;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 960px) {
+  .cardContainer {
+    min-width: 230px;
+  }
+
+  .cardDescription {
+    height: 100px;
+  }
+}

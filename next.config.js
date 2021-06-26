@@ -7,6 +7,6 @@ module.exports = {
     return config;
   },
   images: {
-    domains: ['images.unsplash.com']
+    domains: ['images.unsplash.com', 'images-na.ssl-images-amazon.com', 'fakestoreapi.com']
   }
 };
