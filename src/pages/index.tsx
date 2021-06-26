@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { setUser } from '_redux/actions/users';
 import { useAppSelector } from '_hook/redux';
 
-import Layout, { siteTitle } from '../components/layout';
+import Layout from '../components/layout';
 import ExploreBox from '../components/ExploreBox';
 import ImageCarousel from '../components/ImageCarousel';
 import DailyDiscover from '../components/DailyDiscover';
