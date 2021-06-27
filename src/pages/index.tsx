@@ -1,13 +1,19 @@
-import { useDispatch } from 'react-redux';
-import Layout, { siteTitle } from '../components/layout';
-import { Button, Input } from '@material-ui/core';
 import React, { ReactElement, useState } from 'react';
-import utilStyles from '_style/utils.module.css';
+import { useDispatch } from 'react-redux';
 import { setUser } from '_redux/actions/users';
 import { useAppSelector } from '_hook/redux';
+
+import Layout from '../components/layout';
 import ExploreBox from '../components/ExploreBox';
 import ImageCarousel from '../components/ImageCarousel';
-import { categoriesData, imageCarouselData } from "_constant/data";
+import DailyDiscover from '../components/DailyDiscover';
+
+import { Button, Input } from '@material-ui/core';
+
+import { categoriesData, imageCarouselData } from '_constant/data';
+import WorkingProductsData from '../shared/jsons/workingProducts.json';
+
+import utilStyles from '_style/utils.module.css';
 
 export default function Home(): ReactElement {
   const dispatch = useDispatch();
@@ -24,6 +30,7 @@ export default function Home(): ReactElement {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <ImageCarousel data={imageCarouselData} />
         <ExploreBox data={categoriesData} />
+        <DailyDiscover data={WorkingProductsData.data} />
         <h2 className={utilStyles.headingLg}>Current redux state</h2>
         <pre
           style={{

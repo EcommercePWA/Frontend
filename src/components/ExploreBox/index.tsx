@@ -1,11 +1,14 @@
 import React from 'react';
 import { useWindowSize } from '_hook/useWindowSize';
+import Image from 'next/image';
+import { ExploreItemType } from '_types/index';
+
 import ScrollBox from '../shared/ScrollBox';
 import CarouselBox from '../shared/CarouselBox';
-import Image from 'next/image';
-import styles from './ExploreBox.module.css';
+
 import { IconButton } from '@material-ui/core';
-import { ExploreItemType } from '_types/index';
+
+import styles from './ExploreBox.module.css';
 
 type ExploreBoxProps = {
   data: ExploreItemType[];

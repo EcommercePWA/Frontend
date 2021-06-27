@@ -3,7 +3,7 @@ import styles from './navbar.module.css';
 import { IoCartOutline } from 'react-icons/io5';
 import { OverlayTrigger } from 'react-bootstrap';
 import Image from 'next/image';
-import ShoppingBag from '_images/shopping-bags.svg';
+import ShoppingBag from '_images/icons/shopping-bags.svg';
 
 const ShoppingCart = () => {
   return (
@@ -11,7 +11,7 @@ const ShoppingCart = () => {
       <OverlayTrigger
         key="bottom"
         placement="bottom"
-        trigger={["click", "hover"]}
+        trigger={['click', 'hover']}
         overlay={
           <div className={styles.overLayStyling}>
             <div className={styles.overLayImageHolder}>

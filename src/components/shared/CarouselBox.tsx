@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styles from './CarouselBox.module.css';
+
+import { useWindowSize } from '_hook/useWindowSize';
+
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { useWindowSize } from '_hook/useWindowSize';
+
+import styles from './CarouselBox.module.css';
 
 const segmentArray = <T,>(data: T[], itemsPerPage: number): T[][] => {
   const arr: T[][] = [];
@@ -77,7 +80,7 @@ const CarouselBox = <T,>({
     setLeftBound(0);
     setRightBound(-(clientWidth / itemsPerPage) * (carouselItems.length - itemsPerPage));
     prevWidth.current = width;
-    setDist(snapToGrid)
+    setDist(snapToGrid);
   }, [itemsPerPage, carouselItems, width]);
 
   // useEffect(() => {
@@ -148,7 +151,7 @@ const CarouselBox = <T,>({
               transform: `translateX(${dist}px)`,
               gridTemplateColumns: `repeat(${itemsPerPage},1fr)`,
               transitionDuration: `${transitionSpeed}s`,
-              padding: `0 ${spacing}px`,
+              padding: `0 ${spacing}px`
             }}
             className={styles.carouselBox__container__icon}>
             {arr.map((item, index) => {

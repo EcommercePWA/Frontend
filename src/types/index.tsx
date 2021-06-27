@@ -34,3 +34,12 @@ export interface ImageSlideType {
   url: string;
   description?: string;
 }
+
+export interface RecommendedItems {
+  Item_id: string | number;
+  Name: string;
+  Price: string;
+  Description: string;
+  Category: string;
+  Image: string;
+}

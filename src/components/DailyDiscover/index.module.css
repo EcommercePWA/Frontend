@@ -1,0 +1,28 @@
+.dailyDiscover {
+  min-width: 90%;
+  max-width: 90%;
+}
+
+.dailyDiscover p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #2c2c2d;
+  font-size: 1.2em;
+  letter-spacing: 0.5px;
+  margin: 20px 10px;
+}
+
+.dailyDiscoverGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-gap: 1rem;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media screen and (min-width: 960px) {
+  .dailyDiscoverGrid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-gap: 1.2rem;
+  }
+}

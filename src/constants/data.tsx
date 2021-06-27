@@ -1,15 +1,15 @@
-import Electronics from '_images/electronics.svg';
-import SportsAndOutdoor from '_images/sportsandoutdoor.svg';
-import BeautyAndSkincare from '_images/beautyandskincare.svg';
-import ToysAndGames from '_images/toysandgames.svg';
-import MensClothing from '_images/mensclothing.svg';
-import WomensClothing from '_images/womensclothing.svg';
-import BabyProducts from '_images/babyproducts.svg';
-import Jewelery from '_images/jewelery.svg';
-import HomeAndKitchen from '_images/homeandkitchen.svg';
-import OfficeProducts from '_images/officeproducts.svg';
-import ArtsAndCraftAndSewing from '_images/artsandcraftandsewing.svg';
-import Others from '_images/others.svg';
+import Electronics from '_images/icons/electronics.svg';
+import SportsAndOutdoor from '_images/icons/sportsandoutdoor.svg';
+import BeautyAndSkincare from '_images/icons/beautyandskincare.svg';
+import ToysAndGames from '_images/icons/toysandgames.svg';
+import MensClothing from '_images/icons/mensclothing.svg';
+import WomensClothing from '_images/icons/womensclothing.svg';
+import BabyProducts from '_images/icons/babyproducts.svg';
+import Jewelery from '_images/icons/jewelery.svg';
+import HomeAndKitchen from '_images/icons/homeandkitchen.svg';
+import OfficeProducts from '_images/icons/officeproducts.svg';
+import ArtsAndCraftAndSewing from '_images/icons/artsandcraftandsewing.svg';
+import Others from '_images/icons/others.svg';
 import { ExploreItemType, ImageSlideType } from '_types/index';
 
 export const categoriesData: ExploreItemType[] = [
